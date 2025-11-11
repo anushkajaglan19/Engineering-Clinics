@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health + GPS IoT Tracker</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Health + GPS IoT Tracker</h1>
+    <p>Live health metrics and location from simulated devices.</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <form id="manualForm">
+        <h2>Send Sample Data</h2>
+        <div class="grid">
+          <label>Device ID <input name="deviceId" value="device-001" /></label>
+          <label>Heart Rate <input name="heartRate" type="number" step="1" value="78" /></label>
+          <label>SpO2 <input name="spo2" type="number" step="1" value="98" /></label>
+          <label>Temperature (°C) <input name="temperature" type="number" step="0.1" value="36.8" /></label>
+          <label>Latitude <input name="lat" type="number" step="0.000001" value="28.6139" /></label>
+          <label>Longitude <input name="lng" type="number" step="0.000001" value="77.2090" /></label>
+        </div>
+        <button type="submit">Ingest</button>
+        <button id="toggleSim" type="button">Start Simulator</button>
+      </form>
+    </section>
+
+    <section class="dash">
+      <div id="map"></div>
+      <div class="charts">
+        <canvas id="heartChart"></canvas>
+        <canvas id="spo2Chart"></canvas>
+        <canvas id="tempChart"></canvas>
+      </div>
+    </section>
+
+    <section>
+      <h2>Latest Readings</h2>
+      <div id="latest"></div>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
